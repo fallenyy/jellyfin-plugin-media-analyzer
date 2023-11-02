@@ -4,6 +4,10 @@
 
 * None
 
+## v0.4.0.0 (2023-11-02)
+
+* Remove creatorId (sync with server implementation)
+
 ## v0.3.0.0 (2023-09-25)
 
 * Add options to control listener
