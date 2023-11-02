@@ -135,7 +135,7 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     /// <returns>Task.</returns>
     public async Task DeleteSegementsWithType(MediaSegmentType type)
     {
-        await _mediaSegmentsManager.DeleteSegmentsAsync(creatorId: Id, type: type, typeIndex: 0).ConfigureAwait(false);
+        await _mediaSegmentsManager.DeleteSegmentsAsync(type: type, typeIndex: 0).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -147,7 +147,7 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         _logger.LogDebug("Delete Segments for itemId: {Item}", itemId);
 
-        await _mediaSegmentsManager.DeleteSegmentsAsync(creatorId: Id, itemId: itemId).ConfigureAwait(false);
+        await _mediaSegmentsManager.DeleteSegmentsAsync(itemId: itemId).ConfigureAwait(false);
         DeleteBlacklist(itemId);
     }
 
@@ -196,7 +196,6 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
                 Start = Math.Round(value.Start, 2, MidpointRounding.AwayFromZero),
                 End = Math.Round(value.End, 2, MidpointRounding.AwayFromZero),
                 ItemId = value.ItemId,
-                CreatorId = this.Id,
                 Type = type,
                 Action = value.IsEpisode ? episodeAction : movieAction,
             };
@@ -397,10 +396,6 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     /// </summary>
     public override void OnUninstalling()
     {
-        // Blocking thread, other solution?
-        var task = Task.Run(async () => { await _mediaSegmentsManager.DeleteSegmentsAsync(creatorId: this.Id).ConfigureAwait(false); });
-        task.Wait();
-
         // Delete cache data
         if (Directory.Exists(_pluginCachePath))
         {

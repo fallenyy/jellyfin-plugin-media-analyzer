@@ -643,7 +643,7 @@
                             return;
                         }
 
-                        fetchWithAuth("MediaSegment?creatorId=80885677-DACB-461B-AC97-EE7E971288AA&type="+mode, "DELETE", null);
+                        fetchWithAuth("MediaSegment?type="+mode, "DELETE", null);
 
                         Dashboard.alert(mode + " timestamps erased");
                     });
