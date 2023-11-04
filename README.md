@@ -16,13 +16,10 @@ With following changes
 
 Analyzes the audio of television episodes to detect intros and cedits, for movies detect credits.
 
-## System requirements
+## Requirements
 
-- ~~Jellyfin  10.9 or newer~~
-- ATTENTION: The jellyfin-server needs a working [jellyfin-ffmpeg 5 or 6](https://github.com/jellyfin/jellyfin-ffmpeg/releases). If missing you need to download and provide a path to it through webconfig.
-  - Now you can add your media libraries.
-  - Reason: The duration of a media file is added during first scan and is unknown without ffmpeg!
-  - HotFix: Remove media libraries. Add ffmpeg. Add media libraries again.
+- Jellyfin Server with media segments API!
+  - Please read these [instructions](https://github.com/endrl/segment-editor#installation)
 
 ## Introduction requirements
 
@@ -41,6 +38,12 @@ All of these requirements can be customized as needed.
 2. Install the Media Analyzer plugin from the General section
 3. Restart Jellyfin
 4. Go to Dashboard -> Scheduled Tasks -> Analyze Media and click the play button
+
+## Related projects
+
+- Jellyfin Plugin: [.EDL Creator](https://github.com/endrl/jellyfin-plugin-edl)
+- Tool: [Jellyfin Segment Editor](https://github.com/endrl/segment-editor)
+- Player: [Jellyfin Vue Fork](https://github.com/endrl/jellyfin-vue)
 
 ### Debug Logging
 
